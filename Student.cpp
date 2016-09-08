@@ -9,10 +9,9 @@ bool isGradeGreaterThanHundred(double grade) { return grade > HUNDRED;}
 bool isGradeNegative(double grade) { return grade < ZERO;}
 
 double Student::calculateGrade() {
-    int sumGrades = 0;
     std::replace_if (marks.begin(), marks.end(), isGradeGreaterThanHundred, HUNDRED);
     std::replace_if (marks.begin(), marks.end(), isGradeNegative, ZERO);
-    std::for_each(marks.begin(), marks.end(), [&] (int n) { sumGrades += n;});
+    int sumGrades = accumulate(marks.begin(), marks.end(), 0);
     return (sumGrades/(double)marks.size());
 }
 
