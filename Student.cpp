@@ -31,6 +31,7 @@ string Student::calculateLetterGrade() {
 }
 
 void Student::printReport() {
+    //string report = "name = " + getName() + "\tid = " + getId() + "\tgrade = " + calculateGrade() + "\t letter grade = " + calculateLetterGrade();
     std::cout << "name = " << getName() << "\tid = " << getId() << "\tgrade = " << calculateGrade() << "\t letter grade = " << calculateLetterGrade() << std::endl;
 }
 
