@@ -37,8 +37,8 @@ void Student::printReport() {
 }
 
 
-Student *Student::operator=(const Student &rhs) const {
-    return new Student(rhs.id, rhs.name, rhs.marks);
+Student Student::operator=(const Student &rhs) {
+    return Student(rhs.id, rhs.name, rhs.marks);
 }
 
 int Student::getId() {return id;}
