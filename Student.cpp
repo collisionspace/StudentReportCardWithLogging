@@ -11,7 +11,8 @@ bool isGradeNegative(double grade) { return grade < ZERO;}
 double Student::calculateGrade() {
     std::replace_if (marks.begin(), marks.end(), isGradeGreaterThanHundred, HUNDRED);
     std::replace_if (marks.begin(), marks.end(), isGradeNegative, ZERO);
-    int sumGrades = accumulate(marks.begin(), marks.end(), 0);
+    int sumGrades = std::accumulate(marks.begin(), marks.end(), 0);
+    cout << sumGrades << endl;
     return (sumGrades/(double)marks.size());
 }
 
@@ -35,4 +36,9 @@ void Student::printReport() {
     std::cout << "name = " << getName() << "\tid = " << getId() << "\tgrade = " << calculateGrade() << "\t letter grade = " << calculateLetterGrade() << std::endl;
 }
 
+Student * operator=(const Student &rhs) const {
+    return new Student(rhs.name,rhs.marks);
+}
+
+int Student::getId() {return id;}
 string Student::getName() {return name;}

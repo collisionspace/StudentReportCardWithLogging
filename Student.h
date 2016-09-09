@@ -24,13 +24,13 @@ class Student {
         static int idCount;
 
     public:
-        //~Student() { delete id; delete name;}
+        ~Student() {}
         Student(const string &name, const vector<int> &marks) : id(++idCount), name(name), marks(marks) {};
         double calculateGrade();
         string calculateLetterGrade();
         void printReport();
         static int getIdCount() {return idCount;}
-        int getId() {return id;}
+        int getId();
         string getName();
 };
 #endif //STUDENTREPORTCARD_STUDENT_H
