@@ -36,8 +36,9 @@ void Student::printReport() {
     std::cout << "name = " << getName() << "\tid = " << getId() << "\tgrade = " << calculateGrade() << "\t letter grade = " << calculateLetterGrade() << std::endl;
 }
 
-Student * operator=(const Student &rhs) const {
-    return new Student(rhs.name,rhs.marks);
+
+Student *Student::operator=(const Student &rhs) const {
+    return new Student(rhs.id, rhs.name, rhs.marks);
 }
 
 int Student::getId() {return id;}

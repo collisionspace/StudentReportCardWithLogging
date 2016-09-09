@@ -22,7 +22,7 @@ class Student {
         string name;
         vector<int> marks;
         static int idCount;
-
+        Student(int id,const string &name, const vector<int> &marks) : id(id), name(name), marks(marks) {};
     public:
         ~Student() {}
         Student(const string &name, const vector<int> &marks) : id(++idCount), name(name), marks(marks) {};
@@ -32,5 +32,6 @@ class Student {
         static int getIdCount() {return idCount;}
         int getId();
         string getName();
+        Student *operator=(const Student &rhs) const;
 };
 #endif //STUDENTREPORTCARD_STUDENT_H
