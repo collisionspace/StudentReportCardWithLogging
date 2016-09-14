@@ -5,30 +5,43 @@
 #include "Student.h"
 
 int Student::idCount = 0;
-bool isGradeGreaterThanHundred(double grade) { return grade > HUNDRED;}
-bool isGradeNegative(double grade) { return grade < ZERO;}
+bool isGradeGreaterThanHundred(double grade) {
+    bool flag = grade > HUNDRED;
+    Logger::LogBool(flag, "isGradeGreaterThanHundred = ");
+    return flag;
+}
+bool isGradeNegative(double grade) {
+    bool flag = grade < ZERO;
+    Logger::LogBool(flag, "isGradeNegative = ");
+    return flag;
+}
 
 double Student::calculateGrade() {
     std::replace_if (marks.begin(), marks.end(), isGradeGreaterThanHundred, HUNDRED);
     std::replace_if (marks.begin(), marks.end(), isGradeNegative, ZERO);
     int sumGrades = std::accumulate(marks.begin(), marks.end(), 0);
-    cout << sumGrades << endl;
-    return (sumGrades/(double)marks.size());
+    double gradePercent = (sumGrades/(double)marks.size());
+    std::string gradePercentToString = std::to_string(gradePercent);
+    Logger::Log(gradePercentToString, "calculateGrade = ");
+    return gradePercent;
 }
 
 string Student::calculateLetterGrade() {
     double grade = calculateGrade();
-    if (grade >= 92) {return "A";}
-    else if (grade >= 90) {return "A-";}
-    else if (grade >= 88) {return "B+";}
-    else if (grade >= 82) {return "B";}
-    else if (grade >= 80) {return "B-";}
-    else if (grade >= 78) {return "C+";}
-    else if (grade >= 72) {return "C";}
-    else if (grade >= 70) {return "C-";}
-    else if (grade >= 68) {return "D+";}
-    else if (grade >= 60) {return "D";}
-    return "F";
+    string letter = "";
+    if (grade >= 92) {letter = "A";}
+    else if (grade >= 90) {letter = "A-";}
+    else if (grade >= 88) {letter = "B+";}
+    else if (grade >= 82) {letter = "B";}
+    else if (grade >= 80) {letter = "B-";}
+    else if (grade >= 78) {letter = "C+";}
+    else if (grade >= 72) {letter = "C";}
+    else if (grade >= 70) {letter = "C-";}
+    else if (grade >= 68) {letter = "D+";}
+    else if (grade >= 60) {letter = "D";}
+    else {letter = "F"; }
+    Logger::Log(letter, "calculateLetterGrade = ");
+    return letter;
 }
 
 void Student::printReport() {

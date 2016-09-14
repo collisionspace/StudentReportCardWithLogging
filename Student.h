@@ -10,6 +10,7 @@
 #include <zconf.h>
 #include <iostream>
 #include <algorithm>
+#include "Logger.h"
 
 using namespace std;
 

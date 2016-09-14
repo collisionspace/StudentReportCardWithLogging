@@ -7,7 +7,7 @@ int main() {
     student2.printReport();
 
     //B's
-    Student student3 = Student("Herbet",std::vector<int> {89,90,87,88,88,90});
+    Student student3 = Student("Herbert",std::vector<int> {89,90,87,88,88,90});
     student3.printReport();
     Student student4 = Student("Dave",std::vector<int> {85,83,84,84,86,90});
     student4.printReport();
