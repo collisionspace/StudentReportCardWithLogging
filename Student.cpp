@@ -4,15 +4,18 @@
 
 #include "Student.h"
 
+Logger* logger;
+
 int Student::idCount = 0;
 bool isGradeGreaterThanHundred(double grade) {
     bool flag = grade > HUNDRED;
-    Logger::LogBool(flag, "isGradeGreaterThanHundred = ");
+    logger->Log(flag, "isGradeGreaterThanHundred = ");
     return flag;
 }
+
 bool isGradeNegative(double grade) {
     bool flag = grade < ZERO;
-    Logger::LogBool(flag, "isGradeNegative = ");
+    logger->Log(flag, "isGradeNegative = ");
     return flag;
 }
 
@@ -22,7 +25,7 @@ double Student::calculateGrade() {
     int sumGrades = std::accumulate(marks.begin(), marks.end(), 0);
     double gradePercent = (sumGrades/(double)marks.size());
     std::string gradePercentToString = std::to_string(gradePercent);
-    Logger::Log(gradePercentToString, "calculateGrade = ");
+    logger->Log(gradePercentToString, "calculateGrade = ");
     return gradePercent;
 }
 
@@ -40,19 +43,42 @@ string Student::calculateLetterGrade() {
     else if (grade >= 68) {letter = "D+";}
     else if (grade >= 60) {letter = "D";}
     else {letter = "F"; }
-    Logger::Log(letter, "calculateLetterGrade = ");
+    logger->Log(letter, "calculateLetterGrade = ");
     return letter;
 }
 
-void Student::printReport() {
-    //string report = "name = " + getName() + "\tid = " + getId() + "\tgrade = " + calculateGrade() + "\t letter grade = " + calculateLetterGrade();
-    std::cout << "name = " << getName() << "\tid = " << getId() << "\tgrade = " << calculateGrade() << "\t letter grade = " << calculateLetterGrade() << std::endl;
+string Student::printReport() {
+    string report =  "name = " + getName() + "\tid = " + std::to_string(getId()) + "\tgrade = " + std::to_string(calculateGrade()) + "\t letter grade = " + calculateLetterGrade();
+    logger->Log(report, "Report = ");
+    return report;
 }
 
 
 Student Student::operator=(const Student &rhs) {
-    return Student(rhs.id, rhs.name, rhs.marks);
+    if (this != &rhs) {
+        id = rhs.id;
+        name = rhs.name;
+        marks = rhs.marks;
+    }
+    return *this;
 }
 
-int Student::getId() {return id;}
-string Student::getName() {return name;}
+void Student::setId(int identity) {
+    id = identity;
+    logger->Log(std::to_string(id),"setID = ");
+}
+int Student::getId() const {
+    Logger::Log(std::to_string(id), "ID = ");
+    return id;
+}
+void Student::setName(string person) {
+    name = person;
+    logger->Log(person,"setName = ");
+}
+string Student::getName() const {
+    Logger::Log(name, "Name = ");
+    return name;
+}/*
+void Student::setMarks(const vector<int> &grade) {
+    marks = grade;
+}*/

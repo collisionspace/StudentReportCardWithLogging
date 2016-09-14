@@ -23,16 +23,18 @@ class Student {
         string name;
         vector<int> marks;
         static int idCount;
-        Student(const int id,const string &name, const vector<int> &marks) : id(id), name(name), marks(marks) {};
+        Student(const int id,const string &name, const vector<int> &marks) : id(id), name(name), marks(marks) {Logger::getLogger();};
     public:
         ~Student() {}
-        Student(const string &name, const vector<int> &marks) : id(++idCount), name(name), marks(marks) {};
+        Student(const string &name, const vector<int> &marks) : id(++idCount), name(name), marks(marks) {Logger::getLogger();};
         double calculateGrade();
         string calculateLetterGrade();
-        void printReport();
-        static int getIdCount() {return idCount;}
-        int getId();
-        string getName();
+        string printReport();
+        void setId(int);
+        int getId() const;
+        string getName() const;
+        void setName(string);
+       // void setMarks(const vector<int>);
         Student operator=(const Student &rhs);
 };
 #endif //STUDENTREPORTCARD_STUDENT_H

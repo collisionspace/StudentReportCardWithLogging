@@ -1,5 +1,7 @@
 #include "Student.h"
 int main() {
+    Logger::getLogger();
+    Logger* logger;
     //A's
     Student student1 = Student("Mike",std::vector<int> {100,120,90});
     student1.printReport();
