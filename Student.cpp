@@ -49,7 +49,7 @@ string Student::calculateLetterGrade() {
 
 string Student::printReport() {
     string report =  "name = " + getName() + "\tid = " + std::to_string(getId()) + "\tgrade = " + std::to_string(calculateGrade()) + "\t letter grade = " + calculateLetterGrade();
-    logger->Log(report, "Report = ");
+    logger->Log(report, "Report : ");
     return report;
 }
 
@@ -62,6 +62,9 @@ Student Student::operator=(const Student &rhs) {
     }
     return *this;
 }
+
+//copy constructor
+Student::Student(const Student &student) : id(*new int(student.id)), name(*new string(student.name)), marks(*new vector<int>(student.marks)) {}
 
 void Student::setId(int identity) {
     id = identity;
@@ -76,9 +79,19 @@ void Student::setName(string person) {
     logger->Log(person,"setName = ");
 }
 string Student::getName() const {
-    Logger::Log(name, "Name = ");
+    logger->Log(name, "Name = ");
     return name;
-}/*
+}
 void Student::setMarks(const vector<int> &grade) {
     marks = grade;
-}*/
+}
+
+const vector<int> &Student::getMarks() const {
+    logger->Log(marks, "getMarks = ");
+    return marks;
+}
+
+int Student::getIdCount() {
+    logger->Log(std::to_string(idCount), "getIdCount = ");
+    return idCount;
+}

@@ -1,7 +1,5 @@
 #include "Student.h"
 int main() {
-    Logger::getLogger();
-    Logger* logger;
     //A's
     Student student1 = Student("Mike",std::vector<int> {100,120,90});
     student1.printReport();
@@ -36,8 +34,35 @@ int main() {
 
     student7.printReport();
 
+    //= operator
     student11 = student7;
     student11.printReport();
+    student11 = student11;
+    student11.printReport();
+
+    //empty vector student
+    Student student12 = Student("Blank",std::vector<int> {});
+    student12.printReport();
+    student12.getMarks();
+    //sets the empty vector to a vector with elements
+    student12.setMarks(std::vector<int> {60,68,65,66,61,64,68,10,90});
+    //changes the name
+    student12.setName("Setter guy");
+    student12.printReport();
+
+    //copys student9 to student13
+    Student student13 = Student(student9);
+    student13.printReport();
+    student9.printReport();
+
+    //getsIdCount up to this point
+    student13.getIdCount();
+
+    student13 = student7;
+    student13.printReport();
+    student13 = student13;
+    student13.printReport();
+
     return 0;
 }
 
